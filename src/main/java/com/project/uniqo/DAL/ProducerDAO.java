@@ -12,10 +12,8 @@ import java.util.List;
 @Repository
 public class ProducerDAO {
 
-//    private DBHelper dbHelper = new DBHelper();
     @Autowired
     DBHelper dbHelper;
-
 
     public List<Producer> getProducers() {
         Statement statement = null;
@@ -42,4 +40,27 @@ public class ProducerDAO {
             return producers;
         }
 
-    }}
+    }
+
+    public Producer getProducerById(int id) {
+        Statement statement = null;
+        String query = "SELECT * FROM Producer WHERE Id = " + id;
+        Producer producer = new Producer();
+        try {
+            statement = dbHelper.getDBConnection().createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            if(resultSet.next()) {
+                producer.setId(Integer.parseInt(resultSet.getString("Id")));
+                producer.setName(resultSet.getString("Name"));
+                producer.setCountry(resultSet.getString("Country"));
+                producer.setDescription(resultSet.getString("Description"));
+            }
+
+            return producer;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return producer;
+        }
+    }
+}

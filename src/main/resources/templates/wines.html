@@ -22,6 +22,7 @@
             <th>Year</th>
             <th>Description</th>
             <th>ProducerId</th>
+            <th>Producer</th>
         </tr>
         </thead>
         <tbody>
@@ -34,6 +35,7 @@
             <td th:text="${wine.year}"></td>
             <td th:text="${wine.description}"></td>
             <td th:text="${wine.producerId}"></td>
+            <td th:text="${wine.producer.getName()}"></td>
         </tr>
         </tbody>
     </table>

@@ -4,8 +4,6 @@ import com.project.uniqo.models.Wine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -14,10 +12,11 @@ import java.util.List;
 @Repository
 public class WineDAO {
 
-//    private DBHelper dbHelper = new DBHelper();
-
     @Autowired
     DBHelper dbHelper;
+
+    @Autowired
+    ProducerDAO producerDAO;
 
     public List<Wine> getWines() {
         Statement statement = null;
@@ -38,6 +37,8 @@ public class WineDAO {
                 wine.setYear(Integer.parseInt(resultSet.getString("Year")));
                 wine.setDescription(resultSet.getString("Description"));
                 wine.setProducerId(Integer.parseInt(resultSet.getString("ProducerId")));
+
+                wine.setProducer(producerDAO.getProducerById(wine.getProducerId()));
 
                 wines.add(wine);
             }
