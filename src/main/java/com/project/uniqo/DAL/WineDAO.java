@@ -14,7 +14,10 @@ import java.util.List;
 @Repository
 public class WineDAO {
 
-    private DBHelper dbHelper = new DBHelper();
+//    private DBHelper dbHelper = new DBHelper();
+
+    @Autowired
+    DBHelper dbHelper;
 
     public List<Wine> getWines() {
         Statement statement = null;

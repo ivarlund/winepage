@@ -12,7 +12,10 @@ import java.util.List;
 @Repository
 public class ProducerDAO {
 
-    private DBHelper dbHelper = new DBHelper();
+//    private DBHelper dbHelper = new DBHelper();
+    @Autowired
+    DBHelper dbHelper;
+
 
     public List<Producer> getProducers() {
         Statement statement = null;
@@ -32,7 +35,7 @@ public class ProducerDAO {
 
                 producers.add(producer);
             }
-            System.out.println(producers);
+
             return producers;
         } catch (Exception e) {
             e.printStackTrace();

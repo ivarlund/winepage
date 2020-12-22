@@ -1,6 +1,7 @@
 package com.project.uniqo.DAL;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
