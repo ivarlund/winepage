@@ -10,7 +10,7 @@ public class WineService {
 
     public List<Wine> fetchWineDbData() {
         WineDAO wineDAO = new WineDAO();
-        List<Wine> wines =wineDAO.getWines();
+        List<Wine> wines = wineDAO.getWines();
 
         return wines;
     }

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/general :: headFragment"></div>
+    <title>Producers</title>
+</head>
+<body>
+
+<header th:insert="fragments/general :: navbarFragment"></header>
+
+<div class="container">
+    <h1 align="center">All Producers</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Country</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="producer : ${Producers}">
+            <td th:text="${producer.id}"></td>
+            <td th:text="${producer.name}"></td>
+            <td th:text="${producer.country}"></td>
+            <td th:text="${producer.description}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

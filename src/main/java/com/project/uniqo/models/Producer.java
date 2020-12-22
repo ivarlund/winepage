@@ -6,6 +6,7 @@ public class Producer {
 
     private int id;
     private String name;
+    private String country;
     private String description;
 
     private Collection<Wine> wines;
@@ -24,6 +25,14 @@ public class Producer {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public String getDescription() {
