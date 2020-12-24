@@ -18,4 +18,11 @@ public class WineService {
 
         return wines;
     }
+
+    // NEW WINE SERVICE
+    public List<Wine> fetchWineDbData2() {
+        List<Wine> wines = wineDAO.getWines2();
+
+        return wines;
+    }
 }

@@ -17,4 +17,11 @@ public class WineController {
         model.addAttribute("Wines", wineService.fetchWineDbData());
         return "wines";
     }
+
+    // NEW WINEPAGE
+    @GetMapping("/winess")
+    public String winePage2(Model model) {
+        model.addAttribute("Wines", wineService.fetchWineDbData2());
+        return "winess";
+    }
 }

@@ -1,8 +1,13 @@
 package com.project.uniqo.models;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class Wine {
+
+    public Wine() {
+        grapes = new ArrayList<String>();
+    }
 
     private int id;
     private String name;
@@ -12,6 +17,25 @@ public class Wine {
     private int year;
     private String description;
     private int producerId;
+
+    // new attributes
+    private String imgPath;
+    private Collection<String> grapes;
+    public String getImgPath() {
+        return imgPath;
+    }
+
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
+    }
+
+    public Collection<String> getGrapes() {
+        return grapes;
+    }
+
+    public void setGrapes(Collection<String> grapes) {
+        this.grapes = grapes;
+    }
 
     private Producer producer;
     private Collection<WineGrape> wineGrapes;
