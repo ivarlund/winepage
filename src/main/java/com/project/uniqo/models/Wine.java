@@ -21,6 +21,9 @@ public class Wine {
     // new attributes
     private String imgPath;
     private Collection<String> grapes;
+    private Producer producer;
+    private Collection<WineGrape> wineGrapes;
+
     public String getImgPath() {
         return imgPath;
     }
@@ -36,9 +39,6 @@ public class Wine {
     public void setGrapes(Collection<String> grapes) {
         this.grapes = grapes;
     }
-
-    private Producer producer;
-    private Collection<WineGrape> wineGrapes;
 
     public int getId() {
         return id;
