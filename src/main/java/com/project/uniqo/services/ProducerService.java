@@ -18,4 +18,10 @@ public class ProducerService {
 
         return producers;
     }
+
+    public List<Producer> fetchProducerBySearch(String searchTerm) {
+        List<Producer> producers = producerDAO.getProducersBySearch(searchTerm);
+
+        return producers;
+    }
 }

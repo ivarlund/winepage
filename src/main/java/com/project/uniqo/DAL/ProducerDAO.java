@@ -24,14 +24,7 @@ public class ProducerDAO {
             ResultSet resultSet = statement.executeQuery(query);
 
             while (resultSet.next()) {
-                Producer producer = new Producer();
-
-                producer.setId(Integer.parseInt(resultSet.getString("Id")));
-                producer.setName(resultSet.getString("Name"));
-                producer.setCountry(resultSet.getString("Country"));
-                producer.setDescription(resultSet.getString("Description"));
-
-                producers.add(producer);
+                producers.add(createProducerModel(resultSet));
             }
 
             return producers;
@@ -50,11 +43,8 @@ public class ProducerDAO {
             statement = dbHelper.getDBConnection().createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-            if(resultSet.next()) {
-                producer.setId(Integer.parseInt(resultSet.getString("Id")));
-                producer.setName(resultSet.getString("Name"));
-                producer.setCountry(resultSet.getString("Country"));
-                producer.setDescription(resultSet.getString("Description"));
+            if (resultSet.next()) {
+                producer = createProducerModel(resultSet);
             }
 
             return producer;
@@ -62,5 +52,39 @@ public class ProducerDAO {
             e.printStackTrace();
             return producer;
         }
+    }
+
+    public Producer createProducerModel(ResultSet resultSet) {
+        Producer producer = new Producer();
+        try {
+            producer.setId(Integer.parseInt(resultSet.getString("Id")));
+            producer.setName(resultSet.getString("Name"));
+            producer.setCountry(resultSet.getString("Country"));
+            producer.setDescription(resultSet.getString("Description"));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return producer;
+    }
+
+    public List<Producer> getProducersBySearch(String searchTerm) {
+        Statement statement = null;
+        String query = "SELECT * FROM Producer WHERE Name LIKE '%" + searchTerm + "%'";
+        List<Producer> producers = new ArrayList<>();
+        try {
+            statement = dbHelper.getDBConnection().createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                producers.add(createProducerModel(resultSet));
+            }
+
+            return producers;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return producers;
+        }
+
     }
 }

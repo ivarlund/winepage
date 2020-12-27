@@ -74,7 +74,6 @@ public class WineDAO {
                 } else {
                     wines.add(createWineModel(resultSet));
                 }
-
             }
             return wines;
         } catch (Exception e) {
@@ -111,5 +110,36 @@ public class WineDAO {
         boolean found = wines.stream()
                 .anyMatch(w -> w.getId() == Id);
         return found;
+    }
+
+    public List<Wine> getWineBySearch(String searchTerm) {
+        Statement statement = null;
+        String query = "SELECT Wine.*, Grape.Name as grapename FROM Wine, Grape, WineGrape\n" +
+                "WHERE Wine.Name LIKE '%" + searchTerm + "%'\n" +
+                "AND\n" +
+                "Wine.Id = WineGrape.WineId\n" +
+                "AND \n" +
+                "Grape.Id = WineGrape.GrapeId;";
+        List<Wine> wines = new ArrayList<>();
+        try {
+            statement = dbHelper.getDBConnection().createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            ResultSetMetaData rs = resultSet.getMetaData();
+            for (int i = 0; i < rs.getColumnCount(); i++) {
+                System.out.println(rs.getColumnLabel(i + 1));
+            }
+            while (resultSet.next()) {
+                if (wineInList(wines, Integer.parseInt(resultSet.getString("Id")))) {
+                    Wine wine = wines.get(Integer.parseInt(resultSet.getString("Id")) - 1);
+                    wine.getGrapes().add(resultSet.getString("grapename"));
+                } else {
+                    wines.add(createWineModel(resultSet));
+                }
+            }
+            return wines;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return wines;
+        }
     }
 }

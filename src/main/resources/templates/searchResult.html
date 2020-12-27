@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/general :: headFragment"></div>
+    <title>SearchResult</title>
+</head>
+<body>
+
+<header th:insert="fragments/general :: navbarFragment"></header>
+
+<div class="container">
+    <h2 align="center">Wines</h2>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Country</th>
+            <th>Region</th>
+            <th>Year</th>
+            <th>Description</th>
+            <th>Producer</th>
+            <th>Grapes</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="wine : ${Wines}">
+            <td th:text="${wine.name}"></td>
+            <td th:text="${wine.type}"></td>
+            <td th:text="${wine.country}"></td>
+            <td th:text="${wine.region}"></td>
+            <td th:text="${wine.year}"></td>
+            <td th:text="${wine.description}"></td>
+            <td th:text="${wine.producer.getName()}"></td>
+            <td>
+                <ul style="list-style-type:none" th:each="grape : ${wine.grapes}">
+                    <li th:text="${grape.toString()}"></li>
+                </ul>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2 align="center">Producers</h2>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Country</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="producer : ${Producers}">
+            <td th:text="${producer.id}"></td>
+            <td th:text="${producer.name}"></td>
+            <td th:text="${producer.country}"></td>
+            <td th:text="${producer.description}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<footer>
+    <div th:replace="fragments/general :: footerFragment"></div>
+</footer>
+
+</body>
+</html>

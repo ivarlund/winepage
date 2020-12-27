@@ -30,3 +30,7 @@
 .carousel-indicators .active {
   background-color: black;
 }
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color:  rgba(72, 113, 248, 0.068);
+}

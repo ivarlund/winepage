@@ -25,4 +25,10 @@ public class WineService {
 
         return wines;
     }
+
+    public List<Wine> fetchWineBySearch(String searchTerm) {
+        List<Wine> wines = wineDAO.getWineBySearch(searchTerm);
+
+        return wines;
+    }
 }
