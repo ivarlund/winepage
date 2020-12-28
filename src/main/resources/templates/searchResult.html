@@ -9,8 +9,9 @@
 <header th:insert="fragments/general :: navbarFragment"></header>
 
 <div class="container">
-    <h2 align="center">Wines</h2>
+<!--    <h2 align="center">Wines</h2>-->
     <table class="table table-striped">
+        <caption style="caption-side:top">Wines</caption>
         <thead class="thead-dark">
         <tr>
             <th>Name</th>
@@ -41,11 +42,12 @@
         </tbody>
     </table>
 
-    <h2 align="center">Producers</h2>
+<!--    <h2 align="center">Producers</h2>-->
     <table class="table table-striped">
+        <caption style="caption-side:top">Producers</caption>
         <thead class="thead-dark">
         <tr>
-            <th>Id</th>
+<!--            <th>#</th>-->
             <th>Name</th>
             <th>Country</th>
             <th>Description</th>
@@ -53,7 +55,7 @@
         </thead>
         <tbody>
         <tr th:each="producer : ${Producers}">
-            <td th:text="${producer.id}"></td>
+<!--            <td th:text="${producer.id}"></td>-->
             <td th:text="${producer.name}"></td>
             <td th:text="${producer.country}"></td>
             <td th:text="${producer.description}"></td>
