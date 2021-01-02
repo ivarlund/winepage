@@ -18,7 +18,7 @@ public class WineController {
         return "wines";
     }
 
-    // NEW WINEPAGE
+    // Basic select *
     @GetMapping("/winess")
     public String winePage2(Model model) {
         model.addAttribute("Wines", wineService.fetchWineDbData2());

@@ -5,11 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Repository
 public class WineDAO {
@@ -20,6 +18,101 @@ public class WineDAO {
     @Autowired
     ProducerDAO producerDAO;
 
+    public HashMap<Integer, Wine> getWines() {
+        Statement statement = null;
+        String query = "SELECT Wine.*, Grape.Name as grapename FROM Wine, Grape, WineGrape\n" +
+                "WHERE Wine.Id = WineGrape.WineId\n" +
+                "AND Grape.Id = WineGrape.GrapeId;";
+        HashMap<Integer, Wine> wines = new HashMap<>();
+        try {
+            statement = dbHelper.getDBConnection().createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                if (wines.containsKey(Integer.parseInt(resultSet.getString("Id")))) {
+                    wines.get(Integer.parseInt(resultSet.getString("Id"))).getGrapes().add(resultSet.getString("grapename"));
+                } else {
+                    wines.put(Integer.parseInt(resultSet.getString("Id")), createWineModel(resultSet));
+                }
+            }
+            return wines;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return wines;
+        }
+    }
+
+    public HashMap<Integer, Wine> getWineBySearch(String searchTerm) {
+        Statement statement = null;
+        String query = "SELECT Wine.*, Grape.Name as grapename\n" +
+                "FROM Wine, Grape, WineGrape, Producer\n" +
+                "WHERE Wine.Name LIKE '%" + searchTerm + "%'\n" +
+                "AND\n" +
+                "Wine.Id = WineGrape.WineId\n" +
+                "AND \n" +
+                "Grape.Id = WineGrape.GrapeId\n" +
+                "OR Producer.Name LIKE '%" + searchTerm + "%'\n" +
+                "AND Wine.ProducerId = Producer.Id\n" +
+                "AND\n" +
+                "Wine.Id = WineGrape.WineId\n" +
+                "AND \n" +
+                "Grape.Id = WineGrape.GrapeId\n" +
+                "OR Grape.Name LIKE '%" + searchTerm + "%'\n" +
+                "AND\n" +
+                "Wine.Id = WineGrape.WineId\n" +
+                "AND \n" +
+                "Grape.Id = WineGrape.GrapeId\n" +
+                "AND\n" +
+                "Wine.ProducerId = Producer.Id\n" +
+                ";";
+        HashMap<Integer, Wine> wines = new HashMap<>();
+        try {
+            statement = dbHelper.getDBConnection().createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                if (wines.containsKey(Integer.parseInt(resultSet.getString("Id")))) {
+                    wines.get(Integer.parseInt(resultSet.getString("Id"))).getGrapes().add(resultSet.getString("grapename"));
+                } else {
+                    wines.put(Integer.parseInt(resultSet.getString("Id")), createWineModel(resultSet));
+                }
+            }
+            return wines;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return wines;
+        }
+    }
+
+    public Wine createWineModel(ResultSet resultSet) {
+        Wine wine = new Wine();
+
+        try {
+            wine.setId(Integer.parseInt(resultSet.getString("Id")));
+            wine.setName(resultSet.getString("Name"));
+            wine.setType(resultSet.getString("Type"));
+            wine.setCountry(resultSet.getString("Country"));
+            wine.setRegion(resultSet.getString("Region"));
+            wine.setYear(Integer.parseInt(resultSet.getString("Year")));
+            wine.setDescription(resultSet.getString("Description"));
+            wine.setProducerId(Integer.parseInt(resultSet.getString("ProducerId")));
+            wine.getGrapes().add(resultSet.getString("grapename"));
+
+            wine.setImgPath(resultSet.getString("imgPath"));
+
+            wine.setProducer(producerDAO.getProducerById(wine.getProducerId()));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return wine;
+    }
+
+    // check if wine with Id exist in list NOT NECESSARY ANYMORE CUS I USE HASHMAP
+    public boolean wineInList(List<Wine> wines, int Id) {
+        boolean found = wines.stream()
+                .anyMatch(w -> w.getId() == Id);
+        return found;
+    }
+
+    // Basic select *
     public List<Wine> getWines2() {
         Statement statement = null;
         String query = "SELECT * FROM Wine";
@@ -53,93 +146,4 @@ public class WineDAO {
 
     }
 
-    //NEW WINE SQL QUERY
-    public List<Wine> getWines() {
-        Statement statement = null;
-        String query = "SELECT Wine.*, Grape.Name as grapename FROM Wine, Grape, WineGrape\n" +
-                "WHERE Wine.Id = WineGrape.WineId\n" +
-                "AND Grape.Id = WineGrape.GrapeId;";
-        List<Wine> wines = new ArrayList<>();
-        try {
-            statement = dbHelper.getDBConnection().createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
-            ResultSetMetaData rs = resultSet.getMetaData();
-            for (int i = 0; i < rs.getColumnCount(); i++) {
-                System.out.println(rs.getColumnLabel(i + 1));
-            }
-            while (resultSet.next()) {
-                if (wineInList(wines, Integer.parseInt(resultSet.getString("Id")))) {
-                    Wine wine = wines.get(Integer.parseInt(resultSet.getString("Id")) - 1);
-                    wine.getGrapes().add(resultSet.getString("grapename"));
-                } else {
-                    wines.add(createWineModel(resultSet));
-                }
-            }
-            return wines;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return wines;
-        }
-
-    }
-
-    public Wine createWineModel(ResultSet resultSet) {
-        Wine wine = new Wine();
-
-        try {
-            wine.setId(Integer.parseInt(resultSet.getString("Id")));
-            wine.setName(resultSet.getString("Name"));
-            wine.setType(resultSet.getString("Type"));
-            wine.setCountry(resultSet.getString("Country"));
-            wine.setRegion(resultSet.getString("Region"));
-            wine.setYear(Integer.parseInt(resultSet.getString("Year")));
-            wine.setDescription(resultSet.getString("Description"));
-            wine.setProducerId(Integer.parseInt(resultSet.getString("ProducerId")));
-            wine.getGrapes().add(resultSet.getString("grapename"));
-
-            wine.setImgPath(resultSet.getString("imgPath"));
-
-            wine.setProducer(producerDAO.getProducerById(wine.getProducerId()));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return wine;
-    }
-
-    public boolean wineInList(List<Wine> wines, int Id) {
-        boolean found = wines.stream()
-                .anyMatch(w -> w.getId() == Id);
-        return found;
-    }
-
-    public List<Wine> getWineBySearch(String searchTerm) {
-        Statement statement = null;
-        String query = "SELECT Wine.*, Grape.Name as grapename FROM Wine, Grape, WineGrape\n" +
-                "WHERE Wine.Name LIKE '%" + searchTerm + "%'\n" +
-                "AND\n" +
-                "Wine.Id = WineGrape.WineId\n" +
-                "AND \n" +
-                "Grape.Id = WineGrape.GrapeId;";
-        List<Wine> wines = new ArrayList<>();
-        try {
-            statement = dbHelper.getDBConnection().createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
-            ResultSetMetaData rs = resultSet.getMetaData();
-            for (int i = 0; i < rs.getColumnCount(); i++) {
-                System.out.println(rs.getColumnLabel(i + 1));
-            }
-            while (resultSet.next()) {
-                if (wineInList(wines, Integer.parseInt(resultSet.getString("Id")))) {
-                    Wine wine = wines.get(Integer.parseInt(resultSet.getString("Id")) - 1);
-                    wine.getGrapes().add(resultSet.getString("grapename"));
-                } else {
-                    wines.add(createWineModel(resultSet));
-                }
-            }
-            return wines;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return wines;
-        }
-    }
 }

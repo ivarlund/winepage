@@ -26,15 +26,15 @@
         </thead>
         <tbody>
         <tr th:each="wine : ${Wines}">
-            <td th:text="${wine.name}"></td>
-            <td th:text="${wine.type}"></td>
-            <td th:text="${wine.country}"></td>
-            <td th:text="${wine.region}"></td>
-            <td th:text="${wine.year}"></td>
-            <td th:text="${wine.description}"></td>
-            <td th:text="${wine.producer.getName()}"></td>
+            <td th:text="${wine.value.getName()}"></td>
+            <td th:text="${wine.value.getType()}"></td>
+            <td th:text="${wine.value.getCountry()}"></td>
+            <td th:text="${wine.value.getRegion()}"></td>
+            <td th:text="${wine.value.getYear()}"></td>
+            <td th:text="${wine.value.getDescription()}"></td>
+            <td th:text="${wine.value.getProducer().getName()}"></td>
             <td>
-                <ul style="list-style-type:none" th:each="grape : ${wine.grapes}">
+                <ul style="list-style-type:none; padding-left: 0" th:each="grape : ${wine.value.getGrapes()}">
                     <li th:text="${grape.toString()}"></li>
                 </ul>
             </td>
