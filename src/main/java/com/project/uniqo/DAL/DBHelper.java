@@ -13,7 +13,6 @@ public class DBHelper {
         try {
             String url = "jdbc:sqlserver://COMPVAR\\SQLEXPRESS;database=UniqoDB;integratedSecurity=true;";
             Connection conn = DriverManager.getConnection(url);
-            System.out.println(conn.toString());
             return conn;
         } catch (Exception e) {
             e.printStackTrace();

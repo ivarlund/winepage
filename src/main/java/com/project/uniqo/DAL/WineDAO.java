@@ -43,28 +43,36 @@ public class WineDAO {
 
     public HashMap<Integer, Wine> getWineBySearch(String searchTerm) {
         Statement statement = null;
-        String query = "SELECT Wine.*, Grape.Name as grapename\n" +
+
+        String query ="SELECT Wine.*, Grape.Name as grapename\n" +
                 "FROM Wine, Grape, WineGrape, Producer\n" +
                 "WHERE Wine.Name LIKE '%" + searchTerm + "%'\n" +
-                "AND\n" +
-                "Wine.Id = WineGrape.WineId\n" +
-                "AND \n" +
-                "Grape.Id = WineGrape.GrapeId\n" +
+                "AND Wine.Id = WineGrape.WineId\n" +
+                "AND Grape.Id = WineGrape.GrapeId\n" +
+                "AND Wine.ProducerId = Producer.Id\n" +
                 "OR Producer.Name LIKE '%" + searchTerm + "%'\n" +
                 "AND Wine.ProducerId = Producer.Id\n" +
-                "AND\n" +
-                "Wine.Id = WineGrape.WineId\n" +
-                "AND \n" +
-                "Grape.Id = WineGrape.GrapeId\n" +
+                "AND Wine.Id = WineGrape.WineId\n" +
+                "AND Grape.Id = WineGrape.GrapeId\n" +
                 "OR Grape.Name LIKE '%" + searchTerm + "%'\n" +
-                "AND\n" +
-                "Wine.Id = WineGrape.WineId\n" +
-                "AND \n" +
-                "Grape.Id = WineGrape.GrapeId\n" +
-                "AND\n" +
-                "Wine.ProducerId = Producer.Id\n" +
+                "AND Wine.Id = WineGrape.WineId\n" +
+                "AND Grape.Id = WineGrape.GrapeId\n" +
+                "AND Wine.ProducerId = Producer.Id\n" +
+                "OR Wine.Type LIKE '%" + searchTerm + "%'\n" +
+                "AND Wine.Id = WineGrape.WineId\n" +
+                "AND Grape.Id = WineGrape.GrapeId\n" +
+                "AND Wine.ProducerId = Producer.Id\n" +
+                "OR Wine.Country LIKE '%" + searchTerm + "%'\n" +
+                "AND Wine.Id = WineGrape.WineId\n" +
+                "AND Grape.Id = WineGrape.GrapeId\n" +
+                "AND Wine.ProducerId = Producer.Id\n" +
+                "OR Wine.Region LIKE '%" + searchTerm + "%'\n" +
+                "AND Wine.Id = WineGrape.WineId\n" +
+                "AND Grape.Id = WineGrape.GrapeId\n" +
+                "AND Wine.ProducerId = Producer.Id\n" +
                 ";";
         HashMap<Integer, Wine> wines = new HashMap<>();
+        System.out.println(query);
         try {
             statement = dbHelper.getDBConnection().createStatement();
             ResultSet resultSet = statement.executeQuery(query);
