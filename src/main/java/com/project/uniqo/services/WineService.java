@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 @Service
@@ -15,7 +16,6 @@ public class WineService {
     WineDAO wineDAO;
 
     public HashMap<Integer, Wine> fetchWineDbData() {
-//        List<Wine> wines = wineDAO.getWines();
         HashMap<Integer, Wine> wines = wineDAO.getWines();
         return wines;
     }
@@ -27,8 +27,12 @@ public class WineService {
     }
 
     public HashMap<Integer, Wine> fetchWineBySearch(String searchTerm) {
-//        List<Wine> wines = wineDAO.getWineBySearch(searchTerm);
         HashMap<Integer, Wine> wines = wineDAO.getWineBySearch(searchTerm);
+        return wines;
+    }
+
+    public LinkedHashMap<Integer, Wine> sortWineDbData(String sort) {
+        LinkedHashMap<Integer, Wine> wines = wineDAO.getWinesSorted(sort);
         return wines;
     }
 }

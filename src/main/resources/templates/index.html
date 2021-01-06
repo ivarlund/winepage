@@ -4,14 +4,23 @@
     <div th:replace="fragments/general :: headFragment"></div>
     <title>Uniqo home</title>
 </head>
-<body>
-
+<body class="text-center" style="background-color: #333">
 <header th:insert="fragments/general :: navbarFragment"></header>
 
-<div class="container">
+<div class="cover-container d-flex h-100 p-3 mx-auto flex-column" >
+    <main role="main" class="inner cover">
+        <h1 class="cover-heading" style="color: lightgrey">Uniqo Wines</h1>
+        <p class="lead" style="color: white">
+            Welcome to Uniqo Wines. <br>
+            We offer a hand-picked selection of wines from our trusted wineyards and partners.
+        </p>
+        <p class="lead">
+            <a th:href="@{/contact}" class="btn btn-outline-success" type="button" style="margin-right: 10px" >Contact us</a>
+        </p>
+    </main>
 </div>
 
-<footer>
+<footer class="footer">
 <div th:replace="fragments/general :: footerFragment"></div>
 </footer>
 

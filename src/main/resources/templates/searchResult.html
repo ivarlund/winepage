@@ -4,7 +4,7 @@
     <div th:replace="fragments/general :: headFragment"></div>
     <title>SearchResult</title>
 </head>
-<body>
+<body class="body">
 
 <header th:insert="fragments/general :: navbarFragment"></header>
 
@@ -34,8 +34,8 @@
             <td th:text="${wine.value.getDescription()}"></td>
             <td th:text="${wine.value.getProducer().getName()}"></td>
             <td>
-                <ul style="list-style-type:none; padding-left: 0" th:each="grape : ${wine.value.getGrapes()}">
-                    <li th:text="${grape.toString()}"></li>
+                <ul style="list-style-type:none; padding-left: 0">
+                    <li th:each="grape : ${wine.value.getGrapes()}" th:text="${grape.toString()}"></li>
                 </ul>
             </td>
         </tr>
@@ -65,7 +65,7 @@
 
 </div>
 
-<footer>
+<footer class="footer">
     <div th:replace="fragments/general :: footerFragment"></div>
 </footer>
 

@@ -41,6 +41,37 @@ public class WineDAO {
         }
     }
 
+    public LinkedHashMap<Integer, Wine> getWinesSorted(String sort) {
+        Statement statement = null;
+        String query = "SELECT Wine.*, Grape.Name as grapename FROM Wine, Grape, WineGrape\n" +
+                "WHERE Wine.Id = WineGrape.WineId\n" +
+                "AND Grape.Id = WineGrape.GrapeId\n" +
+                "ORDER BY " + sort + ";";
+        System.out.println(query);
+//        HashMap<Integer, Wine> wines = new HashMap<>();
+        LinkedHashMap<Integer, Wine> wines = new LinkedHashMap<>();
+
+        try {
+            statement = dbHelper.getDBConnection().createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                if (wines.containsKey(Integer.parseInt(resultSet.getString("Id")))) {
+                    wines.get(Integer.parseInt(resultSet.getString("Id"))).getGrapes().add(resultSet.getString("grapename"));
+                } else {
+                    wines.put(Integer.parseInt(resultSet.getString("Id")), createWineModel(resultSet));
+                }
+                System.out.println(createWineModel(resultSet).getName());
+            }
+            for(Integer i : wines.keySet()) {
+                System.out.println(wines.get(i).getName());
+            }
+            return wines;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return wines;
+        }
+    }
+
     public HashMap<Integer, Wine> getWineBySearch(String searchTerm) {
         Statement statement = null;
 

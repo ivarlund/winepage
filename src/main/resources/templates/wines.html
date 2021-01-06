@@ -4,72 +4,134 @@
     <div th:replace="fragments/general :: headFragment"></div>
     <title>Wines</title>
 </head>
-<body>
+<body class="body">
 
 <header th:insert="fragments/general :: navbarFragment"></header>
 
-<div class="container">
-    <h2 align="center">All Wines</h2>
-
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Country</th>
-            <th>Region</th>
-            <th>Year</th>
-            <th>Description</th>
-            <th>Producer</th>
-            <th>Grapes</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="wine : ${Wines}">
-            <td th:text="${wine.value.getName()}"></td>
-            <td th:text="${wine.value.getType()}"></td>
-            <td th:text="${wine.value.getCountry()}"></td>
-            <td th:text="${wine.value.getRegion()}"></td>
-            <td th:text="${wine.value.getYear()}"></td>
-            <td th:text="${wine.value.getDescription()}"></td>
-            <td th:text="${wine.value.getProducer().getName()}"></td>
-            <td>
-                <ul style="list-style-type:none; padding-left: 0" th:each="grape : ${wine.value.getGrapes()}">
-                    <li th:text="${grape.toString()}"></li>
-                </ul>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"></li>
-            <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></li>
-            <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item" th:each="wine : ${Wines}" th:classappend="${wine.value.getId() == 1} ? active : .">
-                <img th:src="@{${wine.value.getImgPath()}}" class="d-block" alt="..." width="130" height="450" style="margin:auto">
-                <div class="carousel-caption" style="position:relative; left:auto; right:auto">
-                    <h5 style="color:black" th:text="${wine.value.getName()}"></h5>
-                    <p style="color:black" th:text="${wine.value.getDescription()}"></p>
+<!--<div class="card" style="border:5px solid #333; margin:5px">-->
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" style="border:10px solid white">
+    <ol class="carousel-indicators">
+        <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"></li>
+        <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></li>
+        <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item" th:each="wine : ${Wines}"
+             th:classappend="${wine.value.getId() == 1} ? active : .">
+            <img th:src="@{${wine.value.getImgPath()}}" class="d-block" alt="..." width="130" height="450"
+                 style="margin:auto">
+            <div class="carousel-caption" style="position:relative; left:auto; right:auto">
+                <h5 style="color:black" th:text="${wine.value.getName()}"></h5>
+                <p style="color:black" th:text="${wine.value.getDescription()}"></p>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </a>
+</div>
+<div class="container" style="margin-top: 15px">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar" style="margin-top: 43px">
+            <div class="card" style="border:2px solid #333; margin: 3px; height: 50%">
+                <div class="card-body">
+                    <form th:action="@{/wines}" method="post" class="d-flex">
+                        <input type="hidden" name="sort" value="Name">
+                        <button class="btn btn-outline-success" type="submit" value="Submit">Name</button>
+                    </form>
+                    <form th:action="@{/wines}" method="post" class="d-flex">
+                        <input type="hidden" name="sort" value="Year">
+                        <button class="btn btn-outline-success" type="submit" value="Submit">Year</button>
+                    </form>
+                    <form th:action="@{/wines}" method="post" class="d-flex">
+                        <input type="hidden" name="sort" value="Type">
+                        <button class="btn btn-outline-success" type="submit" value="Submit">Type</button>
+                    </form>
+                    <form th:action="@{/wines}" method="post" class="d-flex">
+                        <input type="hidden" name="sort" value="Country">
+                        <button class="btn btn-outline-success" type="submit" value="Submit">Country</button>
+                    </form>
+                    <form th:action="@{/wines}" method="post" class="d-flex">
+                        <input type="hidden" name="sort" value="Region">
+                        <button class="btn btn-outline-success" type="submit" value="Submit">Region</button>
+                    </form>
+                    <form th:action="@{/wines}" method="post" class="d-flex">
+                        <input type="hidden" name="sort" value="grapename">
+                        <button class="btn btn-outline-success" type="submit" value="Submit">Grape</button>
+                    </form>
                 </div>
             </div>
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </a>
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h2 align="center">All Wines</h2>
+
+            <div class="card" th:each="wine : ${Wines}" style="border:2px solid #333; margin: 3px">
+                <div class="row g-0">
+                    <div class="col-md-1">
+                        <img th:src="@{${wine.value.getImgPath()}}" alt="..." width="75" height="270"
+                             style="margin:10px">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${wine.value.getName()}"></h5>
+                            <h6 class="card-subtitle mb-2 text-muted" th:text="${wine.value.getYear()}"></h6>
+                            <p class="card-text" th:text="${wine.value.getDescription()}"></p>
+                            <p class="card-text">
+                            <ul style="list-style-type:none; padding-left: 0">
+                                <li th:each="grape : ${wine.value.getGrapes()}" th:text="${grape.toString()}"></li>
+                            </ul>
+                            </p>
+                            <p class="card-text">
+                                <small class="text-muted"><b
+                                        th:text="${wine.value.getProducer().getName()}"></b></small><br>
+                                <small class="text-muted" th:text="${wine.value.getCountry()}"></small><br>
+                                <small class="text-muted" th:text="${wine.value.getRegion()}"></small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-
+    <!--    <table class="table table-striped">-->
+    <!--        <thead>-->
+    <!--        <tr>-->
+    <!--            <th>Name</th>-->
+    <!--            <th>Type</th>-->
+    <!--            <th>Country</th>-->
+    <!--            <th>Region</th>-->
+    <!--            <th>Year</th>-->
+    <!--            <th>Description</th>-->
+    <!--            <th>Producer</th>-->
+    <!--            <th>Grapes</th>-->
+    <!--        </tr>-->
+    <!--        </thead>-->
+    <!--        <tbody>-->
+    <!--        <tr th:each="wine : ${Wines}">-->
+    <!--            <td th:text="${wine.value.getName()}"></td>-->
+    <!--            <td th:text="${wine.value.getType()}"></td>-->
+    <!--            <td th:text="${wine.value.getCountry()}"></td>-->
+    <!--            <td th:text="${wine.value.getRegion()}"></td>-->
+    <!--            <td th:text="${wine.value.getYear()}"></td>-->
+    <!--            <td th:text="${wine.value.getDescription()}"></td>-->
+    <!--            <td th:text="${wine.value.getProducer().getName()}"></td>-->
+    <!--            <td>-->
+    <!--                <ul style="list-style-type:none; padding-left: 0">-->
+    <!--                    <li th:each="grape : ${wine.value.getGrapes()}" th:text="${grape.toString()}"></li>-->
+    <!--                </ul>-->
+    <!--            </td>-->
+    <!--        </tr>-->
+    <!--        </tbody>-->
+    <!--    </table>-->
 </div>
 
-<footer>
+<footer class="footer">
     <div th:replace="fragments/general :: footerFragment"></div>
 </footer>
 
