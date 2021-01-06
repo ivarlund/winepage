@@ -8,6 +8,21 @@
 <header th:insert="fragments/general :: navbarFragment"></header>
 
 <div class="container">
+    <fieldset>
+        <h2 style="text-align: center">Contact form</h2>
+        <form id="contactForm" class="col-12" action="#" th:action="@{/contact}" th:object="${contactForm}" method="post">
+            <div class="row">
+                <label for="subjectInput">Subject: </label>
+                <input id="subjectInput" type="text" th:field="*{subject}">
+            </div>
+            <div class="row">
+                <label for="textInput">Message: </label>
+                <textarea id="textInput" type="text" th:field="*{text}"></textarea>
+                <button class="btn btn-outline-success" type="submit" value="Submit">Send</button>
+            </div>
+
+        </form>
+    </fieldset>
 
 </div>
 

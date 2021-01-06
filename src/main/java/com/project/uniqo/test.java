@@ -1,5 +1,7 @@
 package com.project.uniqo;
 
+import java.util.ArrayList;
+
 public class test {
 
     public static int flip(int x) {
@@ -24,9 +26,9 @@ public class test {
     public static void main(String[] args) {
         test t = new test();
 
-        System.out.println(t.solution(new int[]{1,0,1,0,1,1,1,1,1,1,0,0,1,0,1,1,0,0}));
-        System.out.println(t.solution(new int[]{1, 1, 0, 1, 1}));
-        System.out.println(t.solution(new int[]{0, 1, 0}));
-        System.out.println(t.solution(new int[]{0, 1, 1, 0}));
+//        System.out.println(t.solution(new int[]{1,0,1,0,1,1,1,1,1,1,0,0,1,0,1,1,0,0}));
+//        System.out.println(t.solution(new int[]{1, 1, 0, 1, 1}));
+//        System.out.println(t.solution(new int[]{0, 1, 0}));
+//        System.out.println(t.solution(new int[]{0, 1, 1, 0}));
     }
 }

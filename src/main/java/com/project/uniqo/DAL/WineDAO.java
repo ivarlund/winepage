@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
@@ -17,6 +18,20 @@ public class WineDAO {
 
     @Autowired
     ProducerDAO producerDAO;
+
+    public void addWine(Wine wine) {
+        Statement statement = null;
+        String query = "INSERT INTO Wine (Name, Type, Country, Region, Year, Description, ProducerId) " +
+                "VALUES ('" + wine.getName() + "','" + wine.getType() + "','" + wine.getCountry() + "','" +
+                wine.getRegion() + "'," + wine.getYear() + ",'" + wine.getDescription() + "'," + wine.getProducerId() + "');";
+        try {
+            statement = dbHelper.getDBConnection().createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            System.out.println(resultSet.getString("Name"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public HashMap<Integer, Wine> getWines() {
         Statement statement = null;
@@ -48,7 +63,6 @@ public class WineDAO {
                 "AND Grape.Id = WineGrape.GrapeId\n" +
                 "ORDER BY " + sort + ";";
         System.out.println(query);
-//        HashMap<Integer, Wine> wines = new HashMap<>();
         LinkedHashMap<Integer, Wine> wines = new LinkedHashMap<>();
 
         try {
@@ -60,10 +74,6 @@ public class WineDAO {
                 } else {
                     wines.put(Integer.parseInt(resultSet.getString("Id")), createWineModel(resultSet));
                 }
-                System.out.println(createWineModel(resultSet).getName());
-            }
-            for(Integer i : wines.keySet()) {
-                System.out.println(wines.get(i).getName());
             }
             return wines;
         } catch (Exception e) {
@@ -103,7 +113,6 @@ public class WineDAO {
                 "AND Wine.ProducerId = Producer.Id\n" +
                 ";";
         HashMap<Integer, Wine> wines = new HashMap<>();
-        System.out.println(query);
         try {
             statement = dbHelper.getDBConnection().createStatement();
             ResultSet resultSet = statement.executeQuery(query);

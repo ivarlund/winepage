@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/general :: headFragment"></div>
+    <title>Title</title>
+</head>
+<body>
+<header th:insert="fragments/general :: navbarFragment"></header>
+
+<div class="container">
+    <h2 style="text-align: center">Thank you for reaching out!</h2>
+    <h3>Your message have been received</h3>
+    <label for="subject"><b>Subject</b></label>
+    <p id="subject" th:text="${contactForm.subject}"></p>
+    <label for="text"><b>Text</b></label>
+    <p id="text" th:text="${contactForm.text}"></p>
+</div>
+<footer class="footer">
+    <div th:replace="fragments/general :: footerFragment"></div>
+</footer>
+</body>
+</html>

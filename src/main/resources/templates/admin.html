@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/general :: headFragment"></div>
+    <title>Admin page</title>
+</head>
+<body>
+<header th:insert="fragments/general :: navbarFragment"></header>
+
+<div class="container">
+    <form class="col-12" action="#" th:action="@{/admin}" th:object="${Wine}" method="post">
+        <div class="row">
+            <label for="nameInput">Name: </label>
+            <input id="nameInput" type="text" th:field="*{name}">
+        </div>
+        <div class="row">
+            <label for="typeInput">Type: </label>
+            <input id="typeInput" type="text" th:field="*{type}"></input>
+        </div>
+        <div class="row">
+            <label for="countryInput">Country: </label>
+            <input id="countryInput" type="text" th:field="*{country}">
+        </div>
+        <div class="row">
+            <label for="regionInput">Region: </label>
+            <input id="regionInput" type="text" th:field="*{region}">
+        </div>
+        <div class="row">
+            <label for="yearInput">Year: </label>
+            <input id="yearInput" type="text" th:field="*{year}">
+        </div>
+        <div class="row">
+            <label for="descriptionInput">Description: </label>
+            <textarea id="descriptionInput" type="text" th:field="*{description}"></textarea>
+        </div>
+        <div class="row">
+            <label for="producerIdInput">Producer: </label>
+            <input id="producerIdInput" type="text" th:field="*{producerId}">
+        </div>
+        <button class="btn btn-outline-success" type="submit" value="Submit">Save</button>
+    </form>
+
+</div>
+
+<footer class="footer">
+    <div th:replace="fragments/general :: footerFragment"></div>
+</footer>
+</body>
+</html>

@@ -1,5 +1,6 @@
 package com.project.uniqo.services;
 
+import com.project.uniqo.models.ContactForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.mail.SimpleMailMessage;
@@ -15,12 +16,13 @@ public class EmailService{
     @Autowired
     JavaMailSender emailSender;
 
-    public void sendSimpleMessage(String to, String subject, String text) {
+    public void sendSimpleMessage(ContactForm contactForm) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("ivarswing@gmail.com");
-        message.setTo(to);
-        message.setSubject(subject);
-        message.setText(text);
+        message.setTo(contactForm.getTo());
+        message.setSubject(contactForm.getSubject());
+        message.setText(contactForm.getText());
         emailSender.send(message);
     }
+
 }

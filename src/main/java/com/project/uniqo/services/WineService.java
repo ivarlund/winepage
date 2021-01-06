@@ -35,4 +35,8 @@ public class WineService {
         LinkedHashMap<Integer, Wine> wines = wineDAO.getWinesSorted(sort);
         return wines;
     }
+
+    public void addWine(Wine wine) {
+        wineDAO.addWine(wine);
+    }
 }
