@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="fragments/general :: headFragment"></div>
-    <title>Admin page</title>
+    <title>Title</title>
 </head>
 <body>
 <header th:insert="fragments/general :: navbarFragment"></header>
@@ -11,7 +11,7 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>#</th>
+            <td>#</td>
             <th>Name</th>
             <th>Type</th>
             <th>Country</th>
@@ -20,36 +20,28 @@
             <th>Description</th>
             <th>Producer</th>
             <th>Grapes</th>
-            <th></th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="wine : ${Wines}">
-            <td th:text="${wine.value.getId()}"></td>
-            <td th:text="${wine.value.getName()}"></td>
-            <td th:text="${wine.value.getType()}"></td>
-            <td th:text="${wine.value.getCountry()}"></td>
-            <td th:text="${wine.value.getRegion()}"></td>
-            <td th:text="${wine.value.getYear()}"></td>
-            <td th:text="${wine.value.getDescription()}"></td>
-            <td th:text="${wine.value.getProducer().getName()}"></td>
+        <tr>
+            <td th:text="${Wine.id}"></td>
+            <td th:text="${Wine.name}"></td>
+            <td th:text="${Wine.type}"></td>
+            <td th:text="${Wine.country}"></td>
+            <td th:text="${Wine.region}"></td>
+            <td th:text="${Wine.year}"></td>
+            <td th:text="${Wine.description}"></td>
+            <td th:text="${Wine.producer.name}"></td>
             <td>
                 <ul style="list-style-type:none; padding-left: 0">
-                    <li th:each="grape : ${wine.value.getGrapes()}" th:text="${grape.toString()}"></li>
-                </ul>
-            </td>
-            <td>
-                <ul style="list-style-type:none; padding-left: 0">
-                    <li><a th:href="'/admin/' + ${wine.value.getId()}">Edit</a></li>
-                    <li><a href="#">Delete</a></li>
+                    <li th:each="grape : ${Wine.grapes}" th:text="${grape.toString()}"></li>
                 </ul>
             </td>
         </tr>
         </tbody>
     </table>
-
-    <h2 style="text-align: center">Create new wine</h2>
-    <form class="col-12" action="#" th:action="@{/admin}" th:object="${Wine}" method="post">
+    <form class="col-12" action="#" th:action="@{'/admin/' + ${Wine.id}}" th:object="${newWine}" method="post">
+        <input type="hidden" th:value="${Wine.id}">
         <div class="row">
             <label for="nameInput">Name: </label>
             <input id="nameInput" type="text" th:field="*{name}">
@@ -86,6 +78,7 @@
     </form>
 
 </div>
+
 
 <footer class="footer">
     <div th:replace="fragments/general :: footerFragment"></div>

@@ -10,11 +10,14 @@
 
 <!--<div class="card" style="border:5px solid #333; margin:5px">-->
 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" style="border:10px solid white">
-    <ol class="carousel-indicators">
-        <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"></li>
-        <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></li>
-        <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></li>
-    </ol>
+<!--    <ol class="carousel-indicators">-->
+<!--        <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"></li>-->
+<!--        <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></li>-->
+<!--        <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></li>-->
+<!--        <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"></li>-->
+<!--        <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4"></li>-->
+<!--        <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5"></li>-->
+<!--    </ol>-->
     <div class="carousel-inner">
         <div class="carousel-item" th:each="wine : ${Wines}"
              th:classappend="${wine.value.getId() == 1} ? active : .">
@@ -99,36 +102,36 @@
             </div>
         </div>
     </div>
-    <!--    <table class="table table-striped">-->
-    <!--        <thead>-->
-    <!--        <tr>-->
-    <!--            <th>Name</th>-->
-    <!--            <th>Type</th>-->
-    <!--            <th>Country</th>-->
-    <!--            <th>Region</th>-->
-    <!--            <th>Year</th>-->
-    <!--            <th>Description</th>-->
-    <!--            <th>Producer</th>-->
-    <!--            <th>Grapes</th>-->
-    <!--        </tr>-->
-    <!--        </thead>-->
-    <!--        <tbody>-->
-    <!--        <tr th:each="wine : ${Wines}">-->
-    <!--            <td th:text="${wine.value.getName()}"></td>-->
-    <!--            <td th:text="${wine.value.getType()}"></td>-->
-    <!--            <td th:text="${wine.value.getCountry()}"></td>-->
-    <!--            <td th:text="${wine.value.getRegion()}"></td>-->
-    <!--            <td th:text="${wine.value.getYear()}"></td>-->
-    <!--            <td th:text="${wine.value.getDescription()}"></td>-->
-    <!--            <td th:text="${wine.value.getProducer().getName()}"></td>-->
-    <!--            <td>-->
-    <!--                <ul style="list-style-type:none; padding-left: 0">-->
-    <!--                    <li th:each="grape : ${wine.value.getGrapes()}" th:text="${grape.toString()}"></li>-->
-    <!--                </ul>-->
-    <!--            </td>-->
-    <!--        </tr>-->
-    <!--        </tbody>-->
-    <!--    </table>-->
+<!--        <table class="table table-striped">-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--                <th>Name</th>-->
+<!--                <th>Type</th>-->
+<!--                <th>Country</th>-->
+<!--                <th>Region</th>-->
+<!--                <th>Year</th>-->
+<!--                <th>Description</th>-->
+<!--                <th>Producer</th>-->
+<!--                <th>Grapes</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr th:each="wine : ${Wines}">-->
+<!--                <td th:text="${wine.value.getName()}"></td>-->
+<!--                <td th:text="${wine.value.getType()}"></td>-->
+<!--                <td th:text="${wine.value.getCountry()}"></td>-->
+<!--                <td th:text="${wine.value.getRegion()}"></td>-->
+<!--                <td th:text="${wine.value.getYear()}"></td>-->
+<!--                <td th:text="${wine.value.getDescription()}"></td>-->
+<!--                <td th:text="${wine.value.getProducer().getName()}"></td>-->
+<!--                <td>-->
+<!--                    <ul style="list-style-type:none; padding-left: 0">-->
+<!--                        <li th:each="grape : ${wine.value.getGrapes()}" th:text="${grape.toString()}"></li>-->
+<!--                    </ul>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--        </table>-->
 </div>
 
 <footer class="footer">

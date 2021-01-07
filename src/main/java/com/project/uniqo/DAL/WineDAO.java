@@ -19,19 +19,37 @@ public class WineDAO {
     @Autowired
     ProducerDAO producerDAO;
 
-    public void addWine(Wine wine) {
+    public Wine getWineById(String id) {
         Statement statement = null;
-        String query = "INSERT INTO Wine (Name, Type, Country, Region, Year, Description, ProducerId) " +
-                "VALUES ('" + wine.getName() + "','" + wine.getType() + "','" + wine.getCountry() + "','" +
-                wine.getRegion() + "'," + wine.getYear() + ",'" + wine.getDescription() + "'," + wine.getProducerId() + "');";
+        String query = "SELECT Wine.*, Grape.Name as grapename FROM Wine, Grape, WineGrape WHERE Wine.Id = " + id +
+                " AND " + id + " = WineGrape.WineId\n" +
+                "AND Grape.Id = WineGrape.GrapeId;";
+        Wine wine = new Wine();
         try {
             statement = dbHelper.getDBConnection().createStatement();
             ResultSet resultSet = statement.executeQuery(query);
-            System.out.println(resultSet.getString("Name"));
+            while (resultSet.next())
+                wine = createWineModel(resultSet);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return wine;
+    }
+
+    public void addWine(Wine wine) {
+        Statement statement = null;
+        String query = "INSERT INTO Wine (Name, Type, Country, Region, Year, Description, ProducerId, imgPath) " +
+                "VALUES ('" + wine.getName() + "','" + wine.getType() + "','" + wine.getCountry() + "','" +
+                wine.getRegion() + "'," + wine.getYear() + ",'" + wine.getDescription() + "'," + wine.getProducerId() + ",'" + wine.getImgPath() + "');";
+        try {
+            statement = dbHelper.getDBConnection().createStatement();
+            int x = statement.executeUpdate(query);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+//    public void updateWine()
 
     public HashMap<Integer, Wine> getWines() {
         Statement statement = null;

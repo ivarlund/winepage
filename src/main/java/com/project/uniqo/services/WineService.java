@@ -39,4 +39,8 @@ public class WineService {
     public void addWine(Wine wine) {
         wineDAO.addWine(wine);
     }
+
+    public Wine fetchWineById(String id) {
+        return wineDAO.getWineById(id);
+    }
 }
