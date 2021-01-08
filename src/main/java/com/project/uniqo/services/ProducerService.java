@@ -13,13 +13,13 @@ public class ProducerService {
     @Autowired
     ProducerDAO producerDAO;
 
-    public List<Producer> fetchProducerDbData() {
-        List<Producer> producers = producerDAO.getProducers();
+    public List<Producer> getAllProducers() {
+        List<Producer> producers = producerDAO.getAllProducers();
 
         return producers;
     }
 
-    public List<Producer> fetchProducerBySearch(String searchTerm) {
+    public List<Producer> getProducersBySearch(String searchTerm) {
         List<Producer> producers = producerDAO.getProducersBySearch(searchTerm);
 
         return producers;

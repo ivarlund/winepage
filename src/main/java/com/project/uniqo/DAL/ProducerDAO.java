@@ -15,26 +15,6 @@ public class ProducerDAO {
     @Autowired
     DBHelper dbHelper;
 
-    public List<Producer> getProducers() {
-        Statement statement = null;
-        String query = "SELECT * FROM Producer";
-        List<Producer> producers = new ArrayList<>();
-        try {
-            statement = dbHelper.getDBConnection().createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
-
-            while (resultSet.next()) {
-                producers.add(createProducerModel(resultSet));
-            }
-
-            return producers;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return producers;
-        }
-
-    }
-
     public Producer getProducerById(int id) {
         Statement statement = null;
         String query = "SELECT * FROM Producer WHERE Id = " + id;
@@ -54,18 +34,24 @@ public class ProducerDAO {
         }
     }
 
-    public Producer createProducerModel(ResultSet resultSet) {
-        Producer producer = new Producer();
+    public List<Producer> getAllProducers() {
+        Statement statement = null;
+        String query = "SELECT * FROM Producer";
+        List<Producer> producers = new ArrayList<>();
         try {
-            producer.setId(Integer.parseInt(resultSet.getString("Id")));
-            producer.setName(resultSet.getString("Name"));
-            producer.setCountry(resultSet.getString("Country"));
-            producer.setDescription(resultSet.getString("Description"));
+            statement = dbHelper.getDBConnection().createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
 
+            while (resultSet.next()) {
+                producers.add(createProducerModel(resultSet));
+            }
+
+            return producers;
         } catch (Exception e) {
             e.printStackTrace();
+            return producers;
         }
-        return producer;
+
     }
 
     public List<Producer> getProducersBySearch(String searchTerm) {
@@ -87,4 +73,19 @@ public class ProducerDAO {
         }
 
     }
+
+    public Producer createProducerModel(ResultSet resultSet) {
+        Producer producer = new Producer();
+        try {
+            producer.setId(Integer.parseInt(resultSet.getString("Id")));
+            producer.setName(resultSet.getString("Name"));
+            producer.setCountry(resultSet.getString("Country"));
+            producer.setDescription(resultSet.getString("Description"));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return producer;
+    }
+
 }

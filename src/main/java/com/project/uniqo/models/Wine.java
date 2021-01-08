@@ -6,7 +6,7 @@ import java.util.Collection;
 public class Wine {
 
     public Wine() {
-        grapes = new ArrayList<String>();
+        grapes = new ArrayList<Grape>();
     }
 
     private int id;
@@ -17,12 +17,9 @@ public class Wine {
     private int year;
     private String description;
     private int producerId;
-
-    // new attributes
     private String imgPath;
-    private Collection<String> grapes;
+    private Collection<Grape> grapes;
     private Producer producer;
-    private Collection<WineGrape> wineGrapes;
 
     public String getImgPath() {
         return imgPath;
@@ -32,11 +29,11 @@ public class Wine {
         this.imgPath = imgPath;
     }
 
-    public Collection<String> getGrapes() {
+    public Collection<Grape> getGrapes() {
         return grapes;
     }
 
-    public void setGrapes(Collection<String> grapes) {
+    public void setGrapes(Collection<Grape> grapes) {
         this.grapes = grapes;
     }
 
@@ -110,14 +107,6 @@ public class Wine {
 
     public void setProducer(Producer producer) {
         this.producer = producer;
-    }
-
-    public Collection<WineGrape> getWineGrapes() {
-        return wineGrapes;
-    }
-
-    public void setWineGrapes(Collection<WineGrape> wineGrapes) {
-        this.wineGrapes = wineGrapes;
     }
 
 }

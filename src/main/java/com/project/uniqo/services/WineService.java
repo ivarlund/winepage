@@ -5,9 +5,9 @@ import com.project.uniqo.models.Wine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 
 @Service
 public class WineService {
@@ -15,32 +15,43 @@ public class WineService {
     @Autowired
     WineDAO wineDAO;
 
-    public HashMap<Integer, Wine> fetchWineDbData() {
-        HashMap<Integer, Wine> wines = wineDAO.getWines();
-        return wines;
+    public HashMap<Integer, Wine> getAllWines() {
+        return wineDAO.getAllWines();
     }
 
-    public List<Wine> fetchWineDbData2() {
-        List<Wine> wines = wineDAO.getWines2();
-
-        return wines;
+    public HashMap<Integer, Wine> getWinesBySearch(String searchTerm) {
+        return wineDAO.getWinesBySearch(searchTerm);
     }
 
-    public HashMap<Integer, Wine> fetchWineBySearch(String searchTerm) {
-        HashMap<Integer, Wine> wines = wineDAO.getWineBySearch(searchTerm);
-        return wines;
+    public LinkedHashMap<Integer, Wine> getAllWinesSorted(String sort) {
+        return wineDAO.getAllWinesSorted(sort);
     }
 
-    public LinkedHashMap<Integer, Wine> sortWineDbData(String sort) {
-        LinkedHashMap<Integer, Wine> wines = wineDAO.getWinesSorted(sort);
-        return wines;
-    }
-
-    public void addWine(Wine wine) {
-        wineDAO.addWine(wine);
-    }
-
-    public Wine fetchWineById(String id) {
+    public Wine getWineById(String id) {
         return wineDAO.getWineById(id);
     }
+
+    public void addWine(Wine wine, ArrayList<String> grapes) {
+        wineDAO.addWine(wine, grapes);
+    }
+
+    public void editWine(Wine wine) {
+        wineDAO.editWine(wine);
+    }
+
+    public void deleteWine(String id) {
+        wineDAO.deleteWine(id);
+    }
+
+    public void addWineGrapes(String wineId, ArrayList<String> grapes) {
+        wineDAO.deleteWineGrape(wineId);
+        for (String grapeId: grapes) {
+            wineDAO.addWineGrape(wineId, grapeId);
+        }
+    }
+
+    public HashMap<Integer, Wine> getAllWines2() {
+        return wineDAO.getWinesWithoutGrapes();
+    }
+
 }

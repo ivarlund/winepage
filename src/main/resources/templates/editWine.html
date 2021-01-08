@@ -8,6 +8,7 @@
 <header th:insert="fragments/general :: navbarFragment"></header>
 
 <div class="container">
+    <h2 style="text-align: center">Update wine</h2>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -18,8 +19,9 @@
             <th>Region</th>
             <th>Year</th>
             <th>Description</th>
+            <th>ProducerId</th>
             <th>Producer</th>
-            <th>Grapes</th>
+<!--            <th>Grapes</th>-->
         </tr>
         </thead>
         <tbody>
@@ -31,47 +33,56 @@
             <td th:text="${Wine.region}"></td>
             <td th:text="${Wine.year}"></td>
             <td th:text="${Wine.description}"></td>
+            <td th:text="${Wine.producerId}"></td>
             <td th:text="${Wine.producer.name}"></td>
-            <td>
-                <ul style="list-style-type:none; padding-left: 0">
-                    <li th:each="grape : ${Wine.grapes}" th:text="${grape.toString()}"></li>
-                </ul>
-            </td>
+<!--            <td>-->
+<!--                <ul style="list-style-type:none; padding-left: 0">-->
+<!--                    <li th:each="grape : ${Wine.grapes}" th:text="${grape.toString()}"></li>-->
+<!--                </ul>-->
+<!--            </td>-->
         </tr>
         </tbody>
     </table>
-    <form class="col-12" action="#" th:action="@{'/admin/' + ${Wine.id}}" th:object="${newWine}" method="post">
+    <form class="col-12" action="#" th:action="@{'/admin/edit/' + ${Wine.id}}" th:object="${newWine}" method="post">
         <input type="hidden" th:value="${Wine.id}">
         <div class="row">
-            <label for="nameInput">Name: </label>
+            <label for="nameInput">New name: </label>
             <input id="nameInput" type="text" th:field="*{name}">
         </div>
         <div class="row">
-            <label for="typeInput">Type: </label>
+            <label for="typeInput">New type: </label>
             <input id="typeInput" type="text" th:field="*{type}">
         </div>
         <div class="row">
-            <label for="countryInput">Country: </label>
+            <label for="countryInput">New country: </label>
             <input id="countryInput" type="text" th:field="*{country}">
         </div>
         <div class="row">
-            <label for="regionInput">Region: </label>
+            <label for="regionInput">New region: </label>
             <input id="regionInput" type="text" th:field="*{region}">
         </div>
         <div class="row">
-            <label for="yearInput">Year: </label>
+            <label for="yearInput">New year: </label>
             <input id="yearInput" type="text" th:field="*{year}">
         </div>
         <div class="row">
-            <label for="descriptionInput">Description: </label>
+            <label for="descriptionInput">New description: </label>
             <textarea id="descriptionInput" type="text" th:field="*{description}"></textarea>
         </div>
+        <div class="row" th:each="grape, stat : ${Grapes}">
+            <div class="col">
+                <label th:for="'grape' + ${grape.name}" th:text="${grape.name}"></label>
+            </div>
+            <div class="col">
+                <input type="checkbox" th:id="'grape' + ${grape.name}" th:value="${grape.id}" name="grape">
+            </div>
+        </div>
         <div class="row">
-            <label for="producerIdInput">Producer: </label>
+            <label for="producerIdInput">New producer: </label>
             <input id="producerIdInput" type="text" th:field="*{producerId}">
         </div>
         <div class="row">
-            <label for="imgPathInput">Image path: </label>
+            <label for="imgPathInput">New image path: </label>
             <input id="imgPathInput" type="text" th:field="*{imgPath}">
         </div>
         <button class="btn btn-outline-success" type="submit" value="Submit">Save</button>

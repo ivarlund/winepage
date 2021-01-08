@@ -35,7 +35,7 @@
             <td th:text="${wine.value.getProducer().getName()}"></td>
             <td>
                 <ul style="list-style-type:none; padding-left: 0">
-                    <li th:each="grape : ${wine.value.getGrapes()}" th:text="${grape.toString()}"></li>
+                    <li th:each="grape : ${wine.value.getGrapes()}" th:text="${grape.getName()}"></li>
                 </ul>
             </td>
         </tr>

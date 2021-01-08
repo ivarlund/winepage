@@ -7,8 +7,6 @@ public class Grape {
     private int id;
     private String name;
 
-    private Collection<WineGrape> wineGrapes;
-
     public int getId() {
         return id;
     }
@@ -25,11 +23,4 @@ public class Grape {
         this.name = name;
     }
 
-    public Collection<WineGrape> getWineGrapes() {
-        return wineGrapes;
-    }
-
-    public void setWineGrapes(Collection<WineGrape> wineGrapes) {
-        this.wineGrapes = wineGrapes;
-    }
 }

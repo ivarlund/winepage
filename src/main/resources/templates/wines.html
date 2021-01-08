@@ -87,7 +87,7 @@
                             <p class="card-text" th:text="${wine.value.getDescription()}"></p>
                             <p class="card-text">
                             <ul style="list-style-type:none; padding-left: 0">
-                                <li th:each="grape : ${wine.value.getGrapes()}" th:text="${grape.toString()}"></li>
+                                <li th:each="grape : ${wine.value.getGrapes()}" th:text="${grape.getName()}"></li>
                             </ul>
                             </p>
                             <p class="card-text">

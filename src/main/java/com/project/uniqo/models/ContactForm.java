@@ -1,5 +1,7 @@
 package com.project.uniqo.models;
 
+import javax.validation.constraints.NotBlank;
+
 public class ContactForm {
 
     private static String to = "ivarswing@gmail.com";
@@ -10,6 +12,7 @@ public class ContactForm {
         return to;
     }
 
+    @NotBlank(message = "Subject is mandatory")
     public String getSubject() {
         return subject;
     }

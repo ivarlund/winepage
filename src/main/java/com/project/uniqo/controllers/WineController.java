@@ -16,21 +16,21 @@ public class WineController {
 
     @GetMapping("/wines")
     public String winePage(Model model) {
-        model.addAttribute("Wines", wineService.fetchWineDbData());
+        model.addAttribute("Wines", wineService.getAllWines());
 
         return "wines";
     }
 
     @PostMapping("/wines")
-    public String winePageSort(@RequestParam String sort, Model model) {
-        model.addAttribute("Wines", wineService.sortWineDbData(sort));
+    public String getWinesSorted(@RequestParam String sort, Model model) {
+        model.addAttribute("Wines", wineService.getAllWinesSorted(sort));
         return "wines";
     }
 
     // Basic select *
     @GetMapping("/winess")
     public String winePage2(Model model) {
-        model.addAttribute("Wines", wineService.fetchWineDbData2());
+        model.addAttribute("Wines", wineService.getAllWines2());
         return "winess";
     }
 }

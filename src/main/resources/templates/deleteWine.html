@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/general :: headFragment"></div>
+    <title>Title</title>
+</head>
+<body>
+<header th:insert="fragments/general :: navbarFragment"></header>
+
+<div class="container">
+    <h2 style="text-align: center">Are you sure you want to delete this?</h2>
+    <h4 style="text-align: center">This will also delete all relations with grapes. </h4>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td>#</td>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Country</th>
+            <th>Region</th>
+            <th>Year</th>
+            <th>Description</th>
+            <th>ProducerId</th>
+            <th>Producer</th>
+            <!--            <th>Grapes</th>-->
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${Wine.id}"></td>
+            <td th:text="${Wine.name}"></td>
+            <td th:text="${Wine.type}"></td>
+            <td th:text="${Wine.country}"></td>
+            <td th:text="${Wine.region}"></td>
+            <td th:text="${Wine.year}"></td>
+            <td th:text="${Wine.description}"></td>
+            <td th:text="${Wine.producerId}"></td>
+            <td th:text="${Wine.producer.name}"></td>
+            <!--            <td>-->
+            <!--                <ul style="list-style-type:none; padding-left: 0">-->
+            <!--                    <li th:each="grape : ${Wine.grapes}" th:text="${grape.toString()}"></li>-->
+            <!--                </ul>-->
+            <!--            </td>-->
+        </tr>
+        </tbody>
+    </table>
+
+    <form class="col-12" action="#" th:action="@{'/admin/delete/' + ${Wine.id}}" method="post">
+        <input type="hidden" th:value="id" name="id">
+        <button class="btn btn-danger" type="submit" value="Submit">Delete</button>
+    </form>
+    <a href="/admin" class="btn btn-secondary">Cancel</a>
+
+</div>
+
+<footer class="footer">
+    <div th:replace="fragments/general :: footerFragment"></div>
+</footer>
+</body>
+</html>

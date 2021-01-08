@@ -14,7 +14,7 @@ public class ProducerController {
 
     @GetMapping("/producers")
     public String producerPage(Model model) {
-        model.addAttribute("Producers", producerService.fetchProducerDbData());
+        model.addAttribute("Producers", producerService.getAllProducers());
         return "producers";
     }
 

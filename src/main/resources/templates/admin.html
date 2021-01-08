@@ -35,52 +35,93 @@
             <td th:text="${wine.value.getProducer().getName()}"></td>
             <td>
                 <ul style="list-style-type:none; padding-left: 0">
-                    <li th:each="grape : ${wine.value.getGrapes()}" th:text="${grape.toString()}"></li>
+                    <li th:each="grape : ${wine.value.getGrapes()}" th:text="${grape.getName()}"></li>
                 </ul>
             </td>
             <td>
                 <ul style="list-style-type:none; padding-left: 0">
-                    <li><a th:href="'/admin/' + ${wine.value.getId()}">Edit</a></li>
-                    <li><a href="#">Delete</a></li>
+                    <li><a th:href="'/admin/edit/' + ${wine.value.getId()}">Edit</a></li>
+                    <li><a th:href="'/admin/delete/' + ${wine.value.getId()}">Delete</a></li>
                 </ul>
             </td>
         </tr>
         </tbody>
+
     </table>
 
     <h2 style="text-align: center">Create new wine</h2>
     <form class="col-12" action="#" th:action="@{/admin}" th:object="${Wine}" method="post">
         <div class="row">
-            <label for="nameInput">Name: </label>
-            <input id="nameInput" type="text" th:field="*{name}">
+            <div class="col-1">
+                <label for="nameInput">Name: </label>
+            </div>
+            <div class="col-11">
+                <input class="w-100" id="nameInput" type="text" th:field="*{name}" required>
+            </div>
         </div>
         <div class="row">
-            <label for="typeInput">Type: </label>
-            <input id="typeInput" type="text" th:field="*{type}">
+            <div class="col-1">
+                <label for="typeInput">Type: </label>
+            </div>
+            <div class="col-11">
+                <input class="w-100" id="typeInput" type="text" th:field="*{type}" required>
+            </div>
         </div>
         <div class="row">
-            <label for="countryInput">Country: </label>
-            <input id="countryInput" type="text" th:field="*{country}">
+            <div class="col-1">
+                <label for="countryInput">Country: </label>
+            </div>
+            <div class="col-11">
+                <input class="w-100" id="countryInput" type="text" th:field="*{country}" required>
+            </div>
         </div>
         <div class="row">
-            <label for="regionInput">Region: </label>
-            <input id="regionInput" type="text" th:field="*{region}">
+            <div class="col-1">
+                <label for="regionInput">Region: </label>
+            </div>
+            <div class="col-11">
+                <input class="w-100" id="regionInput" type="text" th:field="*{region}" required>
+            </div>
         </div>
         <div class="row">
-            <label for="yearInput">Year: </label>
-            <input id="yearInput" type="text" th:field="*{year}">
+            <div class="col-1">
+                <label for="yearInput">Year: </label>
+            </div>
+            <div class="col-11">
+                <input class="w-100" id="yearInput" type="text" th:field="*{year}" required>
+            </div>
         </div>
         <div class="row">
-            <label for="descriptionInput">Description: </label>
-            <textarea id="descriptionInput" type="text" th:field="*{description}"></textarea>
+            <div class="col-1">
+                <label for="descriptionInput">Description: </label>
+            </div>
+            <div class="col-11">
+                <textarea class="w-100" id="descriptionInput" type="text" th:field="*{description}" required></textarea>
+            </div>
+        </div>
+        <div class="row" th:each="grape, stat : ${Grapes}">
+            <div class="col">
+                <label th:for="'grape' + ${grape.name}" th:text="${grape.name}"></label>
+            </div>
+            <div class="col">
+                <input type="checkbox" th:id="'grape' + ${grape.name}" th:value="${grape.id}" name="grape">
+            </div>
         </div>
         <div class="row">
-            <label for="producerIdInput">Producer: </label>
-            <input id="producerIdInput" type="text" th:field="*{producerId}">
+            <div class="col-1">
+                <label for="producerIdInput">Producer: </label>
+            </div>
+            <div class="col-11">
+                <input class="w-100" id="producerIdInput" type="text" th:field="*{producerId}" required>
+            </div>
         </div>
         <div class="row">
-            <label for="imgPathInput">Image path: </label>
-            <input id="imgPathInput" type="text" th:field="*{imgPath}">
+            <div class="col-1">
+                <label for="imgPathInput">Image path: </label>
+            </div>
+            <div class="col-11">
+                <input class="w-100" id="imgPathInput" type="text" th:field="*{imgPath}" required>
+            </div>
         </div>
         <button class="btn btn-outline-success" type="submit" value="Submit">Save</button>
     </form>
