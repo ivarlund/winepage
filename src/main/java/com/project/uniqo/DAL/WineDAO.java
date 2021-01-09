@@ -156,6 +156,33 @@ public class WineDAO {
         }
     }
 
+    public HashMap<Integer, Wine> getWinesFiltered(String filter) {
+        Statement statement = null;
+        String query = "SELECT Wine.*, Grape.Name as grapename FROM Wine, Grape, WineGrape " +
+                "WHERE Wine.Type = '" + filter + "' " +
+                "AND Wine.Id = WineGrape.WineId " +
+                "AND Grape.Id = WineGrape.GrapeId";
+        System.out.println(query);
+        HashMap<Integer, Wine> wines = new HashMap<>();
+        try {
+            statement = dbHelper.getDBConnection().createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                if (wines.containsKey(Integer.parseInt(resultSet.getString("Id")))) {
+                    Grape grape = new Grape();
+                    grape.setName(resultSet.getString("grapename"));
+                    wines.get(Integer.parseInt(resultSet.getString("Id"))).getGrapes().add(grape);
+                } else {
+                    wines.put(Integer.parseInt(resultSet.getString("Id")), createWineModelWithGrapes(resultSet));
+                }
+            }
+            return wines;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return wines;
+        }
+    }
+
     public HashMap<Integer, Wine> getWinesBySearch(String searchTerm) {
         Statement statement = null;
 

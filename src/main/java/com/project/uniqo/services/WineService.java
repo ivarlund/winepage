@@ -27,6 +27,10 @@ public class WineService {
         return wineDAO.getAllWinesSorted(sort);
     }
 
+    public HashMap<Integer, Wine> getWinesFiltered(String filter) {
+        return wineDAO.getWinesFiltered(filter);
+    }
+
     public Wine getWineById(String id) {
         return wineDAO.getWineById(id);
     }
