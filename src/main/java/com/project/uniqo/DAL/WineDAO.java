@@ -22,9 +22,6 @@ public class WineDAO {
 
     public Wine getWineById(String id) {
         Statement statement = null;
-//        String query = "SELECT Wine.*, Grape.Name as grapename FROM Wine, Grape, WineGrape WHERE Wine.Id = " + id +
-//                " AND " + id + " = WineGrape.WineId\n" +
-//                "AND Grape.Id = WineGrape.GrapeId;";
         String query = "SELECT * FROM Wine WHERE Id = " + id + ";";
         Wine wine = new Wine();
         try {
@@ -60,7 +57,6 @@ public class WineDAO {
     public void editWine(Wine wine) {
         Statement statement = null;
         String query = createUpdateStatement(wine);
-        System.out.println(query);
         try {
             statement = dbHelper.getDBConnection().createStatement();
             int x = statement.executeUpdate(query);
@@ -134,9 +130,7 @@ public class WineDAO {
                 "WHERE Wine.Id = WineGrape.WineId\n" +
                 "AND Grape.Id = WineGrape.GrapeId\n" +
                 "ORDER BY " + sort + ";";
-        System.out.println(query);
         LinkedHashMap<Integer, Wine> wines = new LinkedHashMap<>();
-
         try {
             statement = dbHelper.getDBConnection().createStatement();
             ResultSet resultSet = statement.executeQuery(query);
@@ -162,7 +156,6 @@ public class WineDAO {
                 "WHERE Wine.Type = '" + filter + "' " +
                 "AND Wine.Id = WineGrape.WineId " +
                 "AND Grape.Id = WineGrape.GrapeId";
-        System.out.println(query);
         HashMap<Integer, Wine> wines = new HashMap<>();
         try {
             statement = dbHelper.getDBConnection().createStatement();
@@ -298,7 +291,6 @@ public class WineDAO {
 
     public String createUpdateStatement(Wine wine) {
         String query = "UPDATE Wine SET ";
-        System.out.println(wine.getName());
         ArrayList<String> queryArr = new ArrayList<>();
         if (wine.getName().length() > 0)
             queryArr.add("Name = '" + wine.getName() + "'");
@@ -320,10 +312,8 @@ public class WineDAO {
         for (int i = 0; i < queryArr.size(); i++) {
             if (i == queryArr.size()-1) {
                 query += queryArr.get(i);
-                System.out.println("LAST ITEM : " + queryArr.get(i));
             } else {
                 query += queryArr.get(i) + ",";
-                System.out.println("ITEM : " + queryArr.get(i));
             }
         }
         return query + " WHERE Id = " + wine.getId() + ";";

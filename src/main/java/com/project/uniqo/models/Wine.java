@@ -21,6 +21,8 @@ public class Wine {
     private Collection<Grape> grapes;
     private Producer producer;
 
+    //Getters & Setters
+
     public String getImgPath() {
         return imgPath;
     }

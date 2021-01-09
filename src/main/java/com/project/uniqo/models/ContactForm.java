@@ -21,6 +21,7 @@ public class ContactForm {
         this.subject = subject;
     }
 
+    @NotBlank(message = "Text is mandatory")
     public String getText() {
         return text;
     }

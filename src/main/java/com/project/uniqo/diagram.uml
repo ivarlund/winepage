@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="0.0" y="886.0">com.project.uniqo.DAL.WineDAO</node>
+    <node x="576.0" y="500.0">com.project.uniqo.models.Producer</node>
+    <node x="12.383605072463638" y="1703.0">com.project.uniqo.controllers.WineController</node>
+    <node x="95.24999999999989" y="1344.0">com.project.uniqo.services.WineService</node>
+    <node x="1353.5009187370601" y="299.0">com.project.uniqo.controllers.ContactController</node>
+    <node x="970.4675854037268" y="714.0">com.project.uniqo.DAL.GrapeDAO</node>
+    <node x="1463.5842520703936" y="0.0">com.project.uniqo.models.ContactForm</node>
+    <node x="813.0072679434094" y="1670.0">com.project.uniqo.controllers.AdminController</node>
+    <node x="436.3333333333333" y="692.0">com.project.uniqo.DAL.ProducerDAO</node>
+    <node x="1064.2175854037268" y="1051.5">com.project.uniqo.services.GrapeService</node>
+    <node x="550.7083333333333" y="1040.0">com.project.uniqo.services.ProducerService</node>
+    <node x="524.4583333333333" y="1443.5">com.project.uniqo.controllers.ProducerController</node>
+    <node x="381.0" y="544.0">com.project.uniqo.DAL.DBHelper</node>
+    <node x="590.1947679434094" y="136.0">com.project.uniqo.models.Wine</node>
+    <node x="477.3964803312631" y="1725.0">com.project.uniqo.controllers.SearchController</node>
+    <node x="1286.2175854037268" y="172.0">com.project.uniqo.services.EmailService</node>
+    <node x="670.6947679434094" y="0.0">com.project.uniqo.models.Grape</node>
+    <node x="1773.5009187370601" y="0.0">com.project.uniqo.UniqoApplication</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.project.uniqo.controllers.ContactController" target="com.project.uniqo.models.ContactForm">
+      <point x="125.0" y="-49.5" />
+      <point x="1666.0009187370601" y="274.0" />
+      <point x="1567.7175854037268" y="274.0" />
+      <point x="1567.7175854037268" y="147.0" />
+      <point x="1576.917585403727" y="147.0" />
+      <point x="45.33333333333326" y="61.0" />
+    </edge>
+    <edge source="com.project.uniqo.models.Wine" target="com.project.uniqo.models.Producer">
+      <point x="19.111111111111086" y="137.0" />
+      <point x="695.3058790545205" y="480.0" />
+      <point x="677.875" y="480.0" />
+      <point x="20.375" y="-71.0" />
+    </edge>
+    <edge source="com.project.uniqo.services.ProducerService" target="com.project.uniqo.models.Producer">
+      <point x="72.75" y="-50.0" />
+      <point x="768.9583333333333" y="866.0" />
+      <point x="737.8333333333333" y="866.0" />
+      <point x="737.8333333333333" y="672.0" />
+      <point x="711.8333333333334" y="672.0" />
+      <point x="54.33333333333337" y="71.0" />
+    </edge>
+    <edge source="com.project.uniqo.DAL.GrapeDAO" target="com.project.uniqo.DAL.DBHelper">
+      <point x="-78.66666666666669" y="-50.0" />
+      <point x="1009.8009187370601" y="662.0" />
+      <point x="526.8333333333334" y="662.0" />
+      <point x="58.33333333333337" y="27.0" />
+    </edge>
+    <edge source="com.project.uniqo.models.Producer" target="com.project.uniqo.models.Wine">
+      <point x="-61.125" y="-71.0" />
+      <point x="596.375" y="460.0" />
+      <point x="657.0836568322983" y="460.0" />
+      <point x="-19.111111111111086" y="137.0" />
+    </edge>
+    <edge source="com.project.uniqo.services.GrapeService" target="com.project.uniqo.DAL.GrapeDAO">
+      <point x="-44.25" y="-38.5" />
+      <point x="1108.4675854037268" y="866.0" />
+      <point x="1088.4675854037268" y="866.0" />
+      <point x="0.0" y="50.0" />
+    </edge>
+    <edge source="com.project.uniqo.models.Wine" target="com.project.uniqo.models.Grape">
+      <point x="-43.0" y="-137.0" />
+      <point x="633.1947679434094" y="116.0" />
+      <point x="705.3376250862665" y="116.0" />
+      <point x="-13.857142857142861" y="38.0" />
+    </edge>
+    <edge source="com.project.uniqo.DAL.WineDAO" target="com.project.uniqo.models.Wine">
+      <point x="30.0" y="-204.0" />
+      <point x="210.0" y="866.0" />
+      <point x="159.21031746031758" y="866.0" />
+      <point x="159.21031746031758" y="440.0" />
+      <point x="618.861434610076" y="440.0" />
+      <point x="-57.33333333333337" y="137.0" />
+    </edge>
+    <edge source="com.project.uniqo.controllers.ContactController" target="com.project.uniqo.services.EmailService">
+      <point x="-125.0" y="-49.5" />
+      <point x="0.0" y="38.5" />
+    </edge>
+    <edge source="com.project.uniqo.DAL.ProducerDAO" target="com.project.uniqo.models.Producer">
+      <point x="0.0" y="-72.0" />
+      <point x="581.8333333333333" y="672.0" />
+      <point x="603.1666666666666" y="672.0" />
+      <point x="-54.33333333333337" y="71.0" />
+    </edge>
+    <edge source="com.project.uniqo.DAL.WineDAO" target="com.project.uniqo.models.Grape">
+      <point x="-90.0" y="-204.0" />
+      <point x="90.0" y="866.0" />
+      <point x="132.68253968253975" y="866.0" />
+      <point x="132.68253968253975" y="106.0" />
+      <point x="691.4804822291236" y="106.0" />
+      <point x="-27.714285714285722" y="38.0" />
+    </edge>
+    <edge source="com.project.uniqo.DAL.ProducerDAO" target="com.project.uniqo.DAL.DBHelper">
+      <point x="-97.0" y="-72.0" />
+      <point x="484.8333333333333" y="672.0" />
+      <point x="468.5" y="672.0" />
+      <point x="0.0" y="27.0" />
+    </edge>
+    <edge source="com.project.uniqo.controllers.AdminController" target="com.project.uniqo.services.GrapeService">
+      <point x="127.125" y="-104.5" />
+      <point x="1109.6322679434093" y="1650.0" />
+      <point x="1152.7175854037268" y="1650.0" />
+      <point x="0.0" y="38.5" />
+    </edge>
+    <edge source="com.project.uniqo.controllers.SearchController" target="com.project.uniqo.services.ProducerService">
+      <point x="71.5" y="-49.5" />
+      <point x="691.8964803312631" y="1650.0" />
+      <point x="756.9583333333333" y="1650.0" />
+      <point x="756.9583333333333" y="1319.0" />
+      <point x="768.9583333333333" y="1319.0" />
+      <point x="72.75" y="50.0" />
+    </edge>
+    <edge source="com.project.uniqo.services.GrapeService" target="com.project.uniqo.models.Grape">
+      <point x="44.25" y="-38.5" />
+      <point x="1196.9675854037268" y="866.0" />
+      <point x="1216.9675854037268" y="866.0" />
+      <point x="1216.9675854037268" y="96.0" />
+      <point x="760.7661965148379" y="96.0" />
+      <point x="41.571428571428555" y="38.0" />
+    </edge>
+    <edge source="com.project.uniqo.DAL.WineDAO" target="com.project.uniqo.DAL.ProducerDAO">
+      <point x="150.0" y="-204.0" />
+      <point x="330.0" y="866.0" />
+      <point x="509.0833333333333" y="866.0" />
+      <point x="-72.75" y="72.0" />
+    </edge>
+    <edge source="com.project.uniqo.controllers.WineController" target="com.project.uniqo.services.WineService">
+      <point x="0.0" y="-71.5" />
+      <point x="137.38360507246364" y="1650.0" />
+      <point x="155.2499999999999" y="1650.0" />
+      <point x="-120.0" y="138.0" />
+    </edge>
+    <edge source="com.project.uniqo.controllers.AdminController" target="com.project.uniqo.models.Wine">
+      <point x="42.375" y="-104.5" />
+      <point x="1024.8822679434093" y="1650.0" />
+      <point x="959.9675854037268" y="1650.0" />
+      <point x="959.9675854037268" y="470.0" />
+      <point x="752.6392123878538" y="470.0" />
+      <point x="76.44444444444446" y="137.0" />
+    </edge>
+    <edge source="com.project.uniqo.services.WineService" target="com.project.uniqo.DAL.WineDAO">
+      <point x="-89.99999999999989" y="-138.0" />
+      <point x="185.25" y="1319.0" />
+      <point x="180.0" y="1319.0" />
+      <point x="0.0" y="204.0" />
+    </edge>
+    <edge source="com.project.uniqo.controllers.SearchController" target="com.project.uniqo.services.WineService">
+      <point x="-71.5" y="-49.5" />
+      <point x="548.8964803312631" y="1650.0" />
+      <point x="275.2499999999999" y="1650.0" />
+      <point x="0.0" y="138.0" />
+    </edge>
+    <edge source="com.project.uniqo.controllers.ProducerController" target="com.project.uniqo.services.ProducerService">
+      <point x="0.0" y="-38.5" />
+      <point x="635.4583333333333" y="1319.0" />
+      <point x="623.4583333333333" y="1319.0" />
+      <point x="-72.75" y="50.0" />
+    </edge>
+    <edge source="com.project.uniqo.controllers.AdminController" target="com.project.uniqo.services.WineService">
+      <point x="-127.125" y="-104.5" />
+      <point x="855.3822679434094" y="1640.0" />
+      <point x="395.2499999999999" y="1640.0" />
+      <point x="120.0" y="138.0" />
+    </edge>
+    <edge source="com.project.uniqo.DAL.GrapeDAO" target="com.project.uniqo.models.Grape">
+      <point x="78.66666666666669" y="-50.0" />
+      <point x="1167.1342520703936" y="672.0" />
+      <point x="1132.7916666666665" y="672.0" />
+      <point x="1132.7916666666665" y="106.0" />
+      <point x="746.909053657695" y="106.0" />
+      <point x="27.714285714285722" y="38.0" />
+    </edge>
+    <edge source="com.project.uniqo.services.EmailService" target="com.project.uniqo.models.ContactForm">
+      <point x="0.0" y="-38.5" />
+      <point x="1416.2175854037268" y="147.0" />
+      <point x="1486.2509187370604" y="147.0" />
+      <point x="-45.33333333333326" y="61.0" />
+    </edge>
+    <edge source="com.project.uniqo.DAL.WineDAO" target="com.project.uniqo.DAL.DBHelper">
+      <point x="90.0" y="-204.0" />
+      <point x="270.0" y="866.0" />
+      <point x="221.0" y="866.0" />
+      <point x="221.0" y="672.0" />
+      <point x="410.1666666666667" y="672.0" />
+      <point x="-58.333333333333314" y="27.0" />
+    </edge>
+    <edge source="com.project.uniqo.services.ProducerService" target="com.project.uniqo.DAL.ProducerDAO">
+      <point x="-72.75" y="-50.0" />
+      <point x="623.4583333333333" y="866.0" />
+      <point x="654.5833333333333" y="866.0" />
+      <point x="72.75" y="72.0" />
+    </edge>
+    <edge source="com.project.uniqo.services.WineService" target="com.project.uniqo.models.Wine">
+      <point x="90.00000000000011" y="-138.0" />
+      <point x="365.25" y="1319.0" />
+      <point x="370.5" y="1319.0" />
+      <point x="370.5" y="450.0" />
+      <point x="637.9725457211872" y="450.0" />
+      <point x="-38.22222222222217" y="137.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.42488151658767775" x="795.7113202351953" y="761.5018960596615" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

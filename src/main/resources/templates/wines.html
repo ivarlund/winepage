@@ -41,32 +41,6 @@
                 <li><a class="btn btn-outline-primary" th:href="'/wines/sort/Region'">Region</a></li>
                 <li><a class="btn btn-outline-primary" th:href="'/wines/sort/grapename'">Grape</a></li>
             </ul>
-            <!--                        <form th:action="@{/wines}" method="post" class="d-flex">-->
-            <!--                            <input type="hidden" name="sort" value="Name">-->
-            <!--                            <button class="btn btn-outline-success" type="submit" value="Submit">Name</button>-->
-            <!--                        </form>-->
-            <!--                        <form th:action="@{/wines}" method="post" class="d-flex">-->
-            <!--                            <input type="hidden" name="sort" value="Year">-->
-            <!--                            <button class="btn btn-outline-success" type="submit" value="Submit">Year</button>-->
-            <!--                        </form>-->
-            <!--                        <form th:action="@{/wines}" method="post" class="d-flex">-->
-            <!--                            <input type="hidden" name="sort" value="Type">-->
-            <!--                            <button class="btn btn-outline-success" type="submit" value="Submit">Type</button>-->
-            <!--                        </form>-->
-            <!--                        <form th:action="@{/wines}" method="post" class="d-flex">-->
-            <!--                            <input type="hidden" name="sort" value="Country">-->
-            <!--                            <button class="btn btn-outline-success" type="submit" value="Submit">Country</button>-->
-            <!--                        </form>-->
-            <!--                        <form th:action="@{/wines}" method="post" class="d-flex">-->
-            <!--                            <input type="hidden" name="sort" value="Region">-->
-            <!--                            <button class="btn btn-outline-success" type="submit" value="Submit">Region</button>-->
-            <!--                        </form>-->
-            <!--                        <form th:action="@{/wines}" method="post" class="d-flex">-->
-            <!--                            <input type="hidden" name="sort" value="grapename">-->
-            <!--                            <button class="btn btn-outline-success" type="submit" value="Submit">Grape</button>-->
-            <!--                        </form>-->
-            <!--                    </div>-->
-            <!--                    <div class="col">-->
             <h3>Filter choices</h3>
             <form th:action="@{/wines}" method="post" class="d-flex">
                 <input type="hidden" name="filter" value="Red wine">
@@ -79,22 +53,6 @@
             <form th:action="@{/wines}" method="post" class="d-flex">
                 <input type="hidden" name="filter" value="Champagne">
                 <button class="btn btn-outline-success" type="submit" value="Submit">Champagne</button>
-            </form>
-            <form th:action="@{/wines}" method="post" class="d-flex">
-                <input type="hidden" name="filter" value="France">
-                <button class="btn btn-outline-success" type="submit" value="Submit">France</button>
-            </form>
-            <form th:action="@{/wines}" method="post" class="d-flex">
-                <input type="hidden" name="filter" value="Italy">
-                <button class="btn btn-outline-success" type="submit" value="Submit">Italy</button>
-            </form>
-            <form th:action="@{/wines}" method="post" class="d-flex">
-                <input type="hidden" name="filter" value="Spain">
-                <button class="btn btn-outline-success" type="submit" value="Submit">Spain</button>
-            </form>
-            <form th:action="@{/wines}" method="post" class="d-flex">
-                <input type="hidden" name="filter" value="USA">
-                <button class="btn btn-outline-success" type="submit" value="Submit">USA</button>
             </form>
         </div>
 

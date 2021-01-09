@@ -9,10 +9,11 @@ import java.sql.DriverManager;
 @Component
 public class DBHelper {
 
+    private static String URL = "jdbc:sqlserver://COMPVAR\\SQLEXPRESS;database=UniqoDB;integratedSecurity=true;";
+
     public Connection getDBConnection() {
         try {
-            String url = "jdbc:sqlserver://COMPVAR\\SQLEXPRESS;database=UniqoDB;integratedSecurity=true;";
-            Connection conn = DriverManager.getConnection(url);
+            Connection conn = DriverManager.getConnection(URL);
             return conn;
         } catch (Exception e) {
             e.printStackTrace();

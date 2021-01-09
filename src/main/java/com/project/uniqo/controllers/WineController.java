@@ -23,17 +23,6 @@ public class WineController {
         return "wines";
     }
 
-    //    @PostMapping("/wines")
-//    public String getWinesSorted(@RequestParam(name = "filter", required = false) String filter, @RequestParam(name = "sort", required = false) String sort,  Model model) {
-//        if (sort != null) {
-//            model.addAttribute("Wines", wineService.getAllWinesSorted(sort));
-//            System.out.println(sort);
-//        } else if (sort != null) {
-//            model.addAttribute("Wines", wineService.getWinesFiltered(filter));
-//            System.out.println("FILTER:  " + filter);
-//        }
-//        return "wines";
-//    }
     @GetMapping("/wines/sort/{sort}")
     public String getWinesSorted(@PathVariable String sort, Model model) {
         model.addAttribute("Wines", wineService.getAllWinesSorted(sort));
